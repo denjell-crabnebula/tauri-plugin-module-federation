@@ -1,6 +1,20 @@
 {
-  "scripts": {},
+  "scripts": {
+    "dev": "pnpm --filter example dev",
+    "dev:guests": "pnpm --filter example_guest* --parallel dev",
+    "dev:host": "pnpm --filter example-host dev",
+    "build": "pnpm --filter example build",
+    "build:plugin": "cargo build -p tauri-plugin-module-federation",
+    "build:host": "pnpm --filter example-host build",
+    "build:guests": "pnpm --filter example_guest* --parallel build",
+    "clean": "pnpm --filter example-* --parallel clean && cargo clean",
+    "clean:js": "pnpm --filter example-* --parallel clean",
+    "clean:rust": "cargo clean",
+    "cargo:update": "cargo update",
+    "cargo:check": "cargo check --all",
+    "test:plugin": "cargo test -p tauri-plugin-module-federation"
+  },
   "devDependencies": {
-    "@tauri-apps/cli": "2.0.0-beta.21"
+    "@tauri-apps/cli": "2.9.5"
   }
 }

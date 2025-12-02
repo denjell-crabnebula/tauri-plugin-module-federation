@@ -9,14 +9,14 @@ exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
 links = "tauri-plugin-module-federation"
 
 [dependencies]
-tauri = { version = "2.0.0-beta.23" }
-serde = "1.0"
-thiserror = "1.0"
-reqwest = "0.12.5"
-url = "2.5.2"
-form_urlencoded = "1.2.1"
+tauri = { version = "2.9.4" }
+serde = "1.0.228"
+thiserror = "2.0.17"
+reqwest = "0.12.24"
+url = "2.5.7"
+form_urlencoded = "1.2.2"
 base64 = "0.22.1"
 sha = "1.0.3"
 
 [build-dependencies]
-tauri-plugin = { version = "2.0.0-beta.18", features = ["build"] }
+tauri-plugin = { version = "2.5.2", features = ["build"] }

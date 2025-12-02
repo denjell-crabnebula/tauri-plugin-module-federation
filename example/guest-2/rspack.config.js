@@ -3,7 +3,7 @@ const {
 	container: { ModuleFederationPlugin },
 } = require("@rspack/core");
 const path = require("node:path");
-const { withZephyr } = require("zephyr-webpack-plugin");
+const { withZephyr } = require("zephyr-rspack-plugin");
 
 // adds all your dependencies as shared modules
 // version is inferred from package.json in the dependencies
