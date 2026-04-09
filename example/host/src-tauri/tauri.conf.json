@@ -5,8 +5,8 @@
 	"build": {
 		"frontendDist": "../dist",
 		"devUrl": "http://localhost:3001",
-		"beforeDevCommand": "pnpm rspack serve",
-		"beforeBuildCommand": "pnpm rspack build --mode production -c rspack.config.js"
+		"beforeDevCommand": "pnpm rsbuild dev",
+		"beforeBuildCommand": "pnpm rsbuild build"
 	},
 	"app": {
 		"windows": [
