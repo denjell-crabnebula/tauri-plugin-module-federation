@@ -36,8 +36,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.6
       lodash:
-        specifier: 4.17.20
-        version: 4.17.20
+        specifier: 4.18.0
+        version: 4.18.0
       react:
         specifier: ^19.2.5
         version: 19.2.5
@@ -85,8 +85,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.6
       lodash:
-        specifier: 4.17.19
-        version: 4.17.19
+        specifier: 4.18.0
+        version: 4.18.0
       react:
         specifier: ^19.2.5
         version: 19.2.5
@@ -134,8 +134,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.6
       lodash:
-        specifier: 4.17.21
-        version: 4.17.21
+        specifier: 4.18.1
+        version: 4.18.1
       react:
         specifier: ^19.2.5
         version: 19.2.5
@@ -1437,14 +1437,9 @@ packages:
     resolution: {integrity: sha512-IWqP2SCPhyVFTBtRcgMHdzlf9ul25NwaFx4wCEH/KjAXuuHY4yNjvPXsBokp8jCB936PyWRaPKUNh8NvylLp2Q==}
     engines: {node: '>=6.11.5'}
 
-  lodash@4.17.19:
-    resolution: {integrity: sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==}
-
-  lodash@4.17.20:
-    resolution: {integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.18.0:
+    resolution: {integrity: sha512-l1mfj2atMqndAHI3ls7XqPxEjV2J9ZkcNyHpoZA3r2T1LLwDB69jgkMWh71YKwhBbK0G2f4WSn05ahmQXVxupA==}
+    deprecated: Bad release. Please use lodash@4.17.21 instead.
 
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
@@ -3519,11 +3514,7 @@ snapshots:
 
   loader-runner@4.3.1: {}
 
-  lodash@4.17.19: {}
-
-  lodash@4.17.20: {}
-
-  lodash@4.17.21: {}
+  lodash@4.18.0: {}
 
   lodash@4.18.1: {}
 
