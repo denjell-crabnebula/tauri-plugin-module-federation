@@ -1,59 +1,54 @@
+const { HtmlRspackPlugin } = require('@rspack/core');
 const {
-	HtmlRspackPlugin,
-	container: { ModuleFederationPlugin },
-} = require("@rspack/core");
-const path = require("node:path");
-const { withZephyr } = require("zephyr-webpack-plugin");
+	ModuleFederationPlugin,
+} = require('@module-federation/enhanced/rspack');
+const { ReactRefreshRspackPlugin } = require('@rspack/plugin-react-refresh');
+const path = require('node:path');
+const { withZephyr } = require('zephyr-rspack-plugin');
 
-// adds all your dependencies as shared modules
-// version is inferred from package.json in the dependencies
-// requiredVersion is used from your package.json
-// dependencies will automatically use the highest available package
-// in the federated app, based on version requirement in package.json
-// multiple different versions might coexist in the federated app
-// Note that this will not affect nested paths like "lodash/pluck"
-// Note that this will disable some optimization on these packages
-// with might lead the bundle size problems
-const deps = require("./package.json").dependencies;
+const isDev = process.env.NODE_ENV !== 'production';
+
 
 let config = {
-	entry: "./src/index",
-	mode: "development",
-	watch: process.env.NODE_ENV === "development",
+	entry: './src/index',
+	mode: 'development',
 	devServer: {
 		static: {
-			directory: path.join(__dirname, "dist"),
+			directory: path.join(__dirname, 'dist'),
 		},
 		headers: {
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-			"Access-Control-Allow-Headers":
-				"X-Requested-With, content-type, Authorization",
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods':
+				'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+			'Access-Control-Allow-Headers':
+				'X-Requested-With, content-type, Authorization',
 		},
 		hot: true,
 		port: 3001,
-		liveReload: true,
 	},
-	target: "web",
+	target: 'web',
 	output: {
-		publicPath: "auto",
+		publicPath: 'auto',
+		uniqueName: 'example_host',
 	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				include: path.resolve(__dirname, "src"),
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
 				use: {
-					loader: "builtin:swc-loader",
+					loader: 'builtin:swc-loader',
 					options: {
 						jsc: {
 							parser: {
-								syntax: "ecmascript",
+								syntax: 'ecmascript',
 								jsx: true,
 							},
 							transform: {
 								react: {
-									runtime: "automatic",
+									runtime: 'automatic',
+									development: isDev,
+									refresh: isDev,
 								},
 							},
 						},
@@ -61,18 +56,21 @@ let config = {
 				},
 			},
 			{
-				test: /\.ts$/,
+				test: /\.tsx?$/,
+				exclude: /node_modules/,
 				use: {
-					loader: "builtin:swc-loader",
+					loader: 'builtin:swc-loader',
 					options: {
 						jsc: {
 							parser: {
-								syntax: "typescript",
-								jsx: true,
+								syntax: 'typescript',
+								tsx: true,
 							},
 							transform: {
 								react: {
-									runtime: "automatic",
+									runtime: 'automatic',
+									development: isDev,
+									refresh: isDev,
 								},
 							},
 						},
@@ -83,29 +81,28 @@ let config = {
 	},
 	plugins: [
 		new ModuleFederationPlugin({
-			name: "example_host",
-			filename: "remoteEntry.js",
+			name: 'example_host',
+			filename: 'remoteEntry.js',
 			remotes: {
-				example_guest: "example_guest@http://localhost:3002/remoteEntry.js",
+				example_guest:
+					'example_guest@http://localhost:3002/remoteEntry.js',
 			},
-			runtimePlugins: [require.resolve("../../module-federation-plugin")],
+			runtimePlugins: [
+				require.resolve('@crabnebula-dev/tauri-module-federation'),
+			],
 			shared: {
-				...deps,
-				react: {
-					eager: true,
-				},
-				"react-dom": {
-					eager: true,
-				},
+				react: {},
+				'react-dom': {},
 				lodash: {},
 			},
 		}),
 		new HtmlRspackPlugin({
-			template: "./public/index.html",
+			template: './public/index.html',
 		}),
-	],
+		isDev && new ReactRefreshRspackPlugin(),
+	].filter(Boolean),
 };
 
-if (process.env.WITH_ZEPHYR === "true") config = withZephyr()(config);
+if (process.env.WITH_ZEPHYR === 'true') config = withZephyr()(config);
 
 module.exports = config;

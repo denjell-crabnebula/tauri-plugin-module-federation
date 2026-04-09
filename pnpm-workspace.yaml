@@ -1,4 +1,6 @@
 packages:
-  - example
-  - example/*
-  - module-federation-plugin
+    - example
+    - example/*
+    - module-federation-plugin
+
+autoInstallPeers: false
