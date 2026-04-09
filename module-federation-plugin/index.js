@@ -1,7 +1,7 @@
 import { registerGlobalPlugins } from "@module-federation/runtime";
 
 /**
- * @typedef {Parameters<NonNullable<import("@module-federation/runtime").FederationRuntimePlugin["afterResolve"]>>[0]} LoadRemoteMatch
+ * @typedef {Parameters<NonNullable<import("@module-federation/runtime").ModuleFederationRuntimePlugin["afterResolve"]>>[0]} LoadRemoteMatch
  */
 
 /**
@@ -14,7 +14,7 @@ function afterResolve(args) {
 }
 
 const hostPlugin = () => {
-	/** @type {import("@module-federation/runtime").FederationRuntimePlugin} */
+	/** @type {import("@module-federation/runtime").ModuleFederationRuntimePlugin} */
 	const plugin = {
 		name: "tauri-module-federation-host",
 		afterResolve,

@@ -1,4 +1,16 @@
 packages:
-  - example
-  - example/*
-  - module-federation-plugin
+    - example
+    - example/*
+    - module-federation-plugin
+
+overrides:
+    ajv: '>=8.18.0'
+    brace-expansion: '>=1.1.13'
+    cross-spawn: '>=7.0.5'
+    micromatch: '>=4.0.8'
+    node-forge: '>=1.4.0'
+    on-headers: '>=1.1.0'
+    picomatch: '>=2.3.2'
+    serialize-javascript: '>=7.0.3'
+
+autoInstallPeers: false

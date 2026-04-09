@@ -1,6 +1,4 @@
 {
-  "scripts": {},
-  "devDependencies": {
-    "@tauri-apps/cli": "2.0.0-beta.21"
-  }
+	"name": "tauri-plugin-module-federation",
+	"private": true
 }

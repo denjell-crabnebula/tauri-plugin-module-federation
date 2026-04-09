@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import lodash from "lodash";
+import React, { version as reactVersion } from 'react';
+import { version as reactDomVersion } from 'react-dom';
+import lodash from 'lodash';
 
-import LocalButton from "./Button";
-import RemoteButton from "example_guest/Button";
+import LocalButton from './Button';
+import RemoteButton from 'example_guest/Button';
 
 const getColorFromString = (str) => {
 	const primes = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23];
@@ -11,10 +11,10 @@ const getColorFromString = (str) => {
 	for (let i = 0; i < str.length; i++) {
 		hash += str.charCodeAt(i) * primes[i % primes.length];
 	}
-	let color = "#";
+	let color = '#';
 	for (let i = 0; i < 3; i++) {
 		const value = (hash >> (i * 8)) & 0xff;
-		color += ("00" + value.toString(16)).substr(-2);
+		color += ('00' + value.toString(16)).substr(-2);
 	}
 	return color;
 };
@@ -22,11 +22,11 @@ const getColorFromString = (str) => {
 const App = () => (
 	<div>
 		<h1>Module Federation in Tauri</h1>
-		<h4 style={{ color: getColorFromString(React.version) }}>
-			Host Used React: {React.version}
+		<h4 style={{ color: getColorFromString(reactVersion) }}>
+			Host Used React: {reactVersion}
 		</h4>
-		<h4 style={{ color: getColorFromString(ReactDOM.version) }}>
-			Host Used ReactDOM: {ReactDOM.version}
+		<h4 style={{ color: getColorFromString(reactDomVersion) }}>
+			Host Used ReactDOM: {reactDomVersion}
 		</h4>
 		<h4 style={{ color: getColorFromString(lodash.VERSION) }}>
 			Host Used Lodash: {lodash.VERSION}
