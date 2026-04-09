@@ -1,6 +1,8 @@
 packages:
-    - example
-    - example/*
-    - module-federation-plugin
+  - example
+  - example/*
+  - module-federation-plugin
+allowBuilds:
+  core-js: true
 
 autoInstallPeers: false
