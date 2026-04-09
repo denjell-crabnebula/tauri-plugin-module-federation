@@ -1,20 +1,39 @@
 # Module Federation Example
 
-`guest` and `guest-2` ars standalone React apps that provides a `Button` component via module federation.
-`guest` consumes the `Button` from `guest-2` as a dependency-of-dependency test.
-`host` is a Tauri + React app that consumes the `Button` component from the `guest` app.
+Demonstrates chained Module Federation in a Tauri app with offline caching.
+
+## Apps
+
+| App | Port | Role |
+|---|---|---|
+| `host` | 3001 | Tauri + React app, consumes `guest` |
+| `guest` | 3002 | Standalone React app, exposes Button, consumes `guest-2` |
+| `guest-2` | 3003 | Standalone React app, exposes Button |
+
+Each app uses a different version of lodash to demonstrate Module Federation's multi-version shared dependency loading. React is shared across all apps.
 
 ## Development
 
-Run `pnpm dev` in this directory to start the `guest` development servers and the host Tauri app.
+```sh
+pnpm dev
+```
+
+This starts the guest dev servers, waits for them to be ready, then launches the host Tauri app.
 
 ## Production
 
-Run `pnpm build` in this directory to build the guest app and host Tauri app.
-Currently the host app requires the guest development server to be running to work.
-This will change once [Zephyr Cloud](https://zephyr-cloud.io/) is properly integrated.
+```sh
+pnpm build
+```
 
-## Zephyr Cloud integration
+## Zephyr Cloud
 
-To use the Zephyr Cloud integration, run the above commands with `WITH_ZEPHYR=true` set.
-This is currently disabled by default as it's not working properly.
+To enable [Zephyr Cloud](https://zephyr-cloud.io/) integration:
+
+```sh
+WITH_ZEPHYR=true pnpm dev
+# or
+WITH_ZEPHYR=true pnpm build
+```
+
+This wraps each rspack config with `withZephyr()`, enabling Zephyr's module deployment and versioning.
