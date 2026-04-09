@@ -1,9 +1,12 @@
 {
 	"name": "example",
 	"scripts": {
-		"dev": "pnpm --filter example-* --parallel dev",
-		"build": "pnpm --filter example-* --parallel build",
-		"guests": "pnpm --filter example_guest* --parallel",
-		"host": "pnpm --filter example-host* --parallel"
+		"dev": "pnpm dev:guests & wait-on http-get://localhost:3002 http-get://localhost:3003 && pnpm dev:host",
+		"dev:guests": "pnpm --filter 'example*guest*' --parallel dev",
+		"dev:host": "pnpm --filter example-host dev",
+		"build": "pnpm --filter 'example*' --parallel build"
+	},
+	"devDependencies": {
+		"wait-on": "^9.0.4"
 	}
 }
