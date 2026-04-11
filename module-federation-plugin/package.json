@@ -18,22 +18,31 @@
 		"module federation",
 		"microfrontend"
 	],
-	"main": "index.js",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
-		".": "./index.js",
-		"./package.json": "./package.json"
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
 	},
 	"files": [
-		"index.js",
+		"dist/**/*",
 		"README.md"
 	],
 	"publishConfig": {
 		"access": "public"
 	},
+	"scripts": {
+		"build": "rslib build"
+	},
 	"peerDependencies": {
 		"@module-federation/runtime": "^2.0.0"
 	},
 	"devDependencies": {
+		"@rslib/core": "^0.12.4",
 		"@module-federation/runtime": "^2.3.1"
 	}
 }

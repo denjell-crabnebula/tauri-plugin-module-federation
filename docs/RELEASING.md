@@ -36,5 +36,6 @@ Use plain semver tags.
 ## Notes
 
 - `release.yml` syncs the Cargo crate version from `module-federation-plugin/package.json` before publish.
+- `pnpm build` verifies both publish artifacts before release: `rslib build` for npm and `cargo package` for crates.io.
 - `workflow_dispatch` with `version=next` creates a snapshot-style prerelease version for npm and crates.io.
 - Changesets remain available for local versioning if you want to use `changeset version` before cutting a release.
