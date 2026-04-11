@@ -14,10 +14,10 @@ This repo publishes:
 
 ## Release flow
 
-1. Add a changeset for `@module-federation/tauri`.
-2. Run the `Release Pull Request` workflow.
-3. Merge the generated release PR.
-4. Cut a GitHub Release from the merged version commit.
+1. Bump `module-federation-plugin/package.json` to the release version.
+2. Run `pnpm release:sync` to sync the Cargo crate version.
+3. Commit the version change.
+4. Cut a GitHub Release from that version commit.
 
 The `Release` workflow publishes both npm and crates.io from the same version.
 
@@ -25,8 +25,6 @@ The `Release` workflow publishes both npm and crates.io from the same version.
 
 - `NPM_TOKEN`
 - `CARGO_REGISTRY_TOKEN`
-
-`REPO_SCOPED_TOKEN` is optional. If absent, workflows fall back to `GITHUB_TOKEN`.
 
 ## Tag format
 
@@ -39,3 +37,4 @@ Use plain semver tags.
 
 - `release.yml` syncs the Cargo crate version from `module-federation-plugin/package.json` before publish.
 - `workflow_dispatch` with `version=next` creates a snapshot-style prerelease version for npm and crates.io.
+- Changesets remain available for local versioning if you want to use `changeset version` before cutting a release.
