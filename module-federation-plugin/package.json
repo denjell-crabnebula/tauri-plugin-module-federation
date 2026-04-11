@@ -1,5 +1,6 @@
 {
-	"name": "@crabnebula-dev/tauri-module-federation",
+	"name": "@module-federation/tauri",
+	"license": "MIT",
 	"main": "index.js",
 	"peerDependencies": {
 		"@module-federation/runtime": "^2.0.0"

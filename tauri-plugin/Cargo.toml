@@ -2,6 +2,7 @@
 name = "tauri-plugin-module-federation"
 version = "0.0.0"
 authors = ["You"]
+license = "MIT"
 description = ""
 edition = "2021"
 rust-version = "1.70"
