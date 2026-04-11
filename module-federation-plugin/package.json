@@ -1,7 +1,35 @@
 {
 	"name": "@module-federation/tauri",
+	"version": "0.0.0",
+	"type": "module",
+	"description": "Tauri runtime integration for Module Federation.",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/module-federation/tauri-plugin-module-federation.git",
+		"directory": "module-federation-plugin"
+	},
+	"bugs": {
+		"url": "https://github.com/module-federation/tauri-plugin-module-federation/issues"
+	},
+	"homepage": "https://github.com/module-federation/tauri-plugin-module-federation#readme",
+	"keywords": [
+		"tauri",
+		"module federation",
+		"microfrontend"
+	],
 	"main": "index.js",
+	"exports": {
+		".": "./index.js",
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"index.js",
+		"README.md"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"peerDependencies": {
 		"@module-federation/runtime": "^2.0.0"
 	},
